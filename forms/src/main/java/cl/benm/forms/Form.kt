@@ -1,6 +1,6 @@
 package cl.benm.forms
 
-interface Form {
+interface Form: Verifiable {
 
     suspend fun initialize(initializer: FormInitialiser)
     suspend fun <T> extract(extractor: FormExtractor<T>)

@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 interface Verifiable {
 
     val valid: Flow<ValidationState>
-    suspend fun validate(silent: Boolean = false)
+    suspend fun validate(silent: Boolean = false): Boolean
 
 }
 

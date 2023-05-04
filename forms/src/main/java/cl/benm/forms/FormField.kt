@@ -2,13 +2,10 @@ package cl.benm.forms
 
 import kotlinx.coroutines.flow.Flow
 
-interface FormField<T> {
+interface FormField<T>: Verifiable {
 
-    val value: Flow<T>
+    val value: Flow<T?>
     var currentValue: T?
 
-    val valid: Flow<ErrorState>
-
-    fun validate(silent: Boolean = false): Boolean
 
 }

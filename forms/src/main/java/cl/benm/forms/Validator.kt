@@ -2,7 +2,7 @@ package cl.benm.forms
 
 interface Validator<in T> {
 
-    fun validate(input: T): ValidationResult
+    fun validate(input: T?): ValidationResult
 
 }
 
