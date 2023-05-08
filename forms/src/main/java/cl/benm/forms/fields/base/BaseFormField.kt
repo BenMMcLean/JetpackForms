@@ -1,4 +1,4 @@
-package cl.benm.forms.fields
+package cl.benm.forms.fields.base
 
 import cl.benm.forms.FormField
 import cl.benm.forms.ValidationResult
@@ -6,19 +6,12 @@ import cl.benm.forms.ValidationState
 import cl.benm.forms.Validator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.runBlocking
 
 abstract class BaseFormField<T>: FormField<T> {
 
-    private val _value = MutableStateFlow<T?>(null)
+    protected val writableValue = MutableStateFlow<T?>(null)
     override val value: Flow<T?>
-        get() = _value
-    override var currentValue: T? = null
-        set(value) {
-            field = value
-            _value.value = value
-            runBlocking { validate(false) }
-        }
+        get() = writableValue
 
     private val _valid = MutableStateFlow<ValidationState>(ValidationState.Valid)
     override val valid: Flow<ValidationState>
