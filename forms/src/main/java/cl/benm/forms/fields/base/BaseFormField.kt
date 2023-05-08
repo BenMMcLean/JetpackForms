@@ -9,11 +9,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 abstract class BaseFormField<T>: FormField<T> {
 
-    protected val writableValue = MutableStateFlow<T?>(null)
+    protected val _value = MutableStateFlow<T?>(null)
     override val value: Flow<T?>
-        get() = writableValue
+        get() = _value
 
-    private val _valid = MutableStateFlow<ValidationState>(ValidationState.Valid)
+    protected val _valid = MutableStateFlow<ValidationState>(ValidationState.Valid)
     override val valid: Flow<ValidationState>
         get() = _valid
     abstract val validators: List<Validator<T>>
