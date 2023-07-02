@@ -8,5 +8,4 @@ interface FormField<T>: Verifiable {
     val value: Flow<T?>
     var currentValue: T?
 
-
 }
