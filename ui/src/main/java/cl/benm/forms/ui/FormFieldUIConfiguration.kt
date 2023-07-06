@@ -2,25 +2,28 @@ package cl.benm.forms.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import cl.benm.forms.FormField
 
+typealias FormFieldLockup = @Composable (
+    title: String?,
+    modifier: Modifier,
+    description: String?,
+    optional: Boolean,
+    content: @Composable () -> Unit
+) -> Unit
+
+typealias FormFieldWrapper<T> = @Composable (
+    field: FormField<T>,
+    modifier: Modifier,
+    delegate: @Composable (error: Boolean) -> Unit
+) -> Unit
 
 interface FormFieldUIConfiguration {
 
-    @Composable
-    fun lockup(
-        title: String?,
-        modifier: Modifier,
-        description: String? = null,
-        optional: Boolean = false,
-        content: @Composable () -> Unit
-    )
+    fun lockup(): FormFieldLockup
+    fun <T> wrapper(): FormFieldWrapper<T>
 
-    @Composable
-    fun <T> wrapper(
-        field: FormField<T>,
-        modifier: Modifier = Modifier,
-        bottomLabel: @Composable () -> Unit = {},
-        delegate: @Composable (error: Boolean) -> Unit
-    )
+
 
 }
+
