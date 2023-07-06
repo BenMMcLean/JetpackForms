@@ -83,6 +83,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./forms/build/outputs/aar/forms-release.aar
           asset_name: forms.aar
+          asset_content_type: application/zip
   publish-release:
     needs: build
     if: ${{ github.ref == 'refs/heads/main' }}
@@ -114,6 +115,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./forms/build/outputs/aar/forms-release.aar
           asset_name: forms.aar
+          asset_content_type: application/zip
   publish-package:
     needs: [build, publish-pre, publish-release]
     if: ${{ always() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') }}
